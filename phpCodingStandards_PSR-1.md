@@ -84,6 +84,38 @@ side effects; i.e., an example of what to emulate:
 ?>
 ```
 
+### Adding HTML Content
+
+Pages that contain HTML should have PHP code interpolated inside of the HTML.  Each PHP tag should respect normal PHP coding standards.  An example follows:
+
+```php
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title of the document</title>
+    </head>
+
+    <body>
+        <h1>Welcome High rollers</h1>
+        <?php
+            $die_1 = 1;
+            $die_2 = 2;
+        ?>
+        <?php 
+            do { 
+                $die_1 = rand(1,6);
+                $die_2 = rand(1,6);
+        ?>
+          <p>You rolled a <?=$die_1?> and a <?=$die_2?></p>
+        <?php 
+            }while( $die_1 != $die_2 ); 
+        ?>
+    </body>
+
+</html>
+```
+
 ### Namespace and Class Names
 
 Namespaces and classes MUST follow an "autoloading"
