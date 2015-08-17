@@ -3,23 +3,23 @@
 
 ### Overview
 
--   Files MUST use only `` and `<?=` tags.
+-   Files MUST use only `````` and ```<?=``` tags.
 -   Files MUST use only UTF-8 without BOM for PHP code.
 -   Files SHOULD either declare symbols (classes, functions,
     constants, etc.) or cause side-effects (e.g. generate output, change
     .ini settings, etc.) but SHOULD NOT do both.
 -   Namespaces and classes MUST follow an "autoloading"
     [PSR-4](http://www.php-fig.org/psr/psr-4/).
--   Class names MUST be declared in `StudlyCaps`.
+-   Class names MUST be declared in ```StudlyCaps```.
 -   Class constants MUST be declared in all upper case with
     underscore separators.
--   Method names MUST be declared in `camelCase`.
+-   Method names MUST be declared in ```camelCase```.
 
 ### Files
 
 #### PHP Tags
 
-PHP code MUST use the long ` ?>` tags or the short-echo `<?= ?>`
+PHP code MUST use the long ``` ?>``` tags or the short-echo ```<?= ?>```
 tags; it MUST NOT use the other tag variations.
 
 #### Character Encoding
@@ -45,42 +45,42 @@ The following is an example of a file with both declarations and side
 effects; i.e, an example of what to avoid:
 
 ```php
+<?php
+    // side effect: change ini settings
+    ini_set('error_reporting', E_ALL);
 
-// side effect: change ini settings
-ini_set('error_reporting', E_ALL);
+    // side effect: loads a file
+    include "file.php";
 
-// side effect: loads a file
-include "file.php";
+    // side effect: generates output
+    echo "<html>\n";
 
-// side effect: generates output
-echo "<html>\n";
-
-// declaration
-function foo()
-{
-    // function body
-}
+    // declaration
+    function foo()
+    {
+        // function body
+    }
 ?>
 ```
 The following example is of a file that contains declarations without
 side effects; i.e., an example of what to emulate:
 
 ```php
-
-// declaration
-function foo()
-{
-    // function body
-}
-
-// conditional declaration is *not* a side effect
-if (! function_exists('bar'))
-{
-    function bar()
+<?php
+    // declaration
+    function foo()
     {
         // function body
     }
-}
+
+    // conditional declaration is *not* a side effect
+    if (! function_exists('bar'))
+    {
+        function bar()
+        {
+            // function body
+        }
+    }
 ?>
 ```
 
@@ -97,13 +97,13 @@ Class names MUST be declared in StudlyCaps.
 Code written for PHP 5.3 and after MUST use formal namespaces.
 
 ```php
+<?php
+    // PHP 5.3 and later:
+    namespace Vendor\Model;
 
-// PHP 5.3 and later:
-namespace Vendor\Model;
-
-class Foo
-{
-}
+    class Foo
+    {
+    }
 ?>
 ```
 
@@ -111,11 +111,11 @@ Code written for 5.2.x and before SHOULD use the pseudo-namespacing
 convention of ```Vendor_``` prefixes on class names.
 
 ```php
-
-// PHP 5.2.x and earlier:
-class Vendor_Model_Foo
-{
-}
+<?php
+    // PHP 5.2.x and earlier:
+    class Vendor_Model_Foo
+    {
+    }
 ?>
 ```
 
@@ -130,13 +130,13 @@ separators. For example:
 
 ```php
 <?php
-namespace Vendor\Model;
+    namespace Vendor\Model;
 
-class Foo
-{
-    const VERSION = '1.0';
-    const DATE_APPROVED = '2012-06-01';
-}
+    class Foo
+    {
+        const VERSION = '1.0';
+        const DATE_APPROVED = '2012-06-01';
+    }
 ?>
 ```
 
