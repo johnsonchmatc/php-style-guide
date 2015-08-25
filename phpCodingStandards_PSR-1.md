@@ -97,18 +97,15 @@ Pages that contain HTML should have PHP code interpolated inside of the HTML.  E
     </head>
 
     <body>
-        <h1>Welcome High rollers</h1>
-        <?php
-            $die_1 = 1;
-            $die_2 = 2;
-            do { 
-                $die_1 = rand(1,6);
-                $die_2 = rand(1,6);
-        ?>
-            <p>You rolled a <?=$die_1?> and a <?=$die_2?></p>
-        <?php 
-            }while( $die_1 != $die_2 ); 
-        ?>
+        <?php if(!empty($_POST['name'])) : ?>
+            <h3>Greetings, <?php $_POST['name']; ?>, welcome.</h3>
+        <?php endif; ?>
+        
+        <form action="<?php $PHP_SELF; ?>" method="POST">
+            <label name="name">Enter your name:</label>
+            <input type="text" name="name" >
+            <input type="submit" >
+        </form>
     </body>
 
 </html>
